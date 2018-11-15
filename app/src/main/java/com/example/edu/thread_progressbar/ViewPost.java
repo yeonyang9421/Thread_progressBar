@@ -23,21 +23,16 @@ public class ViewPost extends AppCompatActivity implements View.OnClickListener 
     private int mProgressBarStatus = 0;
     Thread thread;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_post);
-
-
         mbutton = findViewById(R.id.button);
         mbutton2 = findViewById(R.id.button2);
         mprogressbar = findViewById(R.id.progressBar);
         mImageView = findViewById(R.id.imageView);
         mbutton.setOnClickListener(this);
         mbutton2.setOnClickListener(this);
-
-
     }
 
     @Override
@@ -63,7 +58,6 @@ public class ViewPost extends AppCompatActivity implements View.OnClickListener 
                                 break;
                              //   e.printStackTrace();
                             }
-
                         }
                     }
                 });
@@ -102,9 +96,5 @@ public class ViewPost extends AppCompatActivity implements View.OnClickListener 
                     }
                 }).start();
         }
-
-
     }
-
-
 }
