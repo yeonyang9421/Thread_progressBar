@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +21,7 @@ public class ViewPost extends AppCompatActivity implements View.OnClickListener 
     Button mbutton, mbutton2;
     ProgressBar mprogressbar;
     ImageView mImageView;
+    TextView mtextView;
     private int mProgressBarStatus = 0;
     Thread thread;
 
@@ -31,6 +33,7 @@ public class ViewPost extends AppCompatActivity implements View.OnClickListener 
         mbutton2 = findViewById(R.id.button2);
         mprogressbar = findViewById(R.id.progressBar);
         mImageView = findViewById(R.id.imageView);
+        mtextView=findViewById(R.id.textview);
         mbutton.setOnClickListener(this);
         mbutton2.setOnClickListener(this);
     }
@@ -52,6 +55,7 @@ public class ViewPost extends AppCompatActivity implements View.OnClickListener 
                                     @Override
                                     public void run() {
                                         mprogressbar.setProgress(mProgressBarStatus);
+                                 mtextView.setText("진행률 : " + String.valueOf(mProgressBarStatus) + "%");
                                     }
                                 });
                             } catch (InterruptedException e) {
