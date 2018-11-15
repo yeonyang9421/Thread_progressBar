@@ -21,6 +21,7 @@ public class ViewPost extends AppCompatActivity implements View.OnClickListener 
     ProgressBar mprogressbar;
     ImageView mImageView;
     private int mProgressBarStatus = 0;
+    Thread thread;
 
 
     @Override
@@ -44,31 +45,37 @@ public class ViewPost extends AppCompatActivity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.button:
                 mImageView.setImageResource(R.drawable.google);
-                new Thread(new Runnable() {
+               thread= new Thread(new Runnable() {
                     @Override
                     public void run() {
 
                         while (mProgressBarStatus < 100) {
                             try {
                                 Thread.sleep(100);
+                                mProgressBarStatus++;
+                                mprogressbar.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mprogressbar.setProgress(mProgressBarStatus);
+                                    }
+                                });
                             } catch (InterruptedException e) {
-                                e.printStackTrace();
+                                break;
+                             //   e.printStackTrace();
                             }
-                            mProgressBarStatus++;
-                            mprogressbar.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    mprogressbar.setProgress(mProgressBarStatus);
-                                }
-                            });
+
                         }
                     }
-                }).start();
-
+                });
+                   thread.start();
 
                 break;
 
             case R.id.button2:
+                if(thread !=null) {
+                    thread.interrupt();
+                    thread=null;
+                }
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
